@@ -1,0 +1,22 @@
+---
+import json from '../../../data/events.json';
+import Layout from '../../../layouts/Layout.astro';
+---
+<Layout title="indexoftalk">
+<main>
+{
+    json.map((event) => (
+        <h1>{event.name}</h1>
+        <ul>
+        {event.talks.map((talk) => (
+            <li><a href={talk.url}>{talk.title}</a>
+            {talk.speaker.map((speaker) => (
+                <>{speaker.name}({speaker.company})</>
+            ))}
+            </li>
+        ))}
+        </ul>
+    ))
+}
+</main>
+</Layout>
